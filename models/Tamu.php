@@ -1,5 +1,5 @@
 <?php
-include "../services/db.php";
+include "./services/db.php";
 
 function createTamu($tanggal, $nama_tamu, $alamat, $no_hp, $bertemu, $kepentingan) {
     $query = "INSERT INTO tamu(tanggal, nama_tamu, alamat, no_hp, bertemu, kepentingan) VALUES (?, ?, ?, ?, ?, ?)";
