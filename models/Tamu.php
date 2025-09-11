@@ -1,13 +1,13 @@
 <?php
 include "./services/db.php";
 
-function createTamu($tanggal, $nama_tamu, $alamat, $no_hp, $bertemu, $kepentingan)
+function createTamu($id_tamu, $tanggal, $nama_tamu, $alamat, $no_hp, $bertemu, $kepentingan)
 {
-    $query = "INSERT INTO tamu(tanggal, nama_tamu, alamat, no_hp, bertemu, kepentingan) VALUES (?, ?, ?, ?, ?, ?)";
+    $query = "INSERT INTO tamu(id_tamu, tanggal, nama_tamu, alamat, no_hp, bertemu, kepentingan) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     $db = getDBConnection();
     $stmt = $db->prepare($query);
-    $stmt->bind_param("ssssss", $tanggal, $nama_tamu, $alamat, $no_hp, $bertemu, $kepentingan);
+    $stmt->bind_param("sssssss", $id_tamu, $tanggal, $nama_tamu, $alamat, $no_hp, $bertemu, $kepentingan);
     return $stmt->execute();
 }
 
