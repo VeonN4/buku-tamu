@@ -1,7 +1,8 @@
 <?php
 include "./services/db.php";
 
-function createTamu($tanggal, $nama_tamu, $alamat, $no_hp, $bertemu, $kepentingan) {
+function createTamu($tanggal, $nama_tamu, $alamat, $no_hp, $bertemu, $kepentingan)
+{
     $query = "INSERT INTO tamu(tanggal, nama_tamu, alamat, no_hp, bertemu, kepentingan) VALUES (?, ?, ?, ?, ?, ?)";
 
     $db = getDBConnection();
@@ -10,7 +11,8 @@ function createTamu($tanggal, $nama_tamu, $alamat, $no_hp, $bertemu, $kepentinga
     return $stmt->execute();
 }
 
-function getTamu() {
+function getTamu()
+{
     $query = "SELECT * FROM tamu";
 
     $db = getDBConnection();
@@ -19,7 +21,8 @@ function getTamu() {
     return $stmt->get_result();
 }
 
-function getTamuById($id) {
+function getTamuById($id)
+{
     $query = "SELECT * FROM tamu WHERE id = $id";
 
     $db = getDBConnection();
@@ -29,7 +32,18 @@ function getTamuById($id) {
     return $stmt->get_result();
 }
 
-function updateTamu($id, $tanggal, $nama_tamu, $alamat, $no_hp, $bertemu, $kepentingan) {
+function getTamuLargestId()
+{
+    $query = "SELECT max(id_tamu) as maxTamuId FROM tamu";
+
+    $db = getDBConnection();
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+    return $stmt->get_result();
+}
+
+function updateTamu($id, $tanggal, $nama_tamu, $alamat, $no_hp, $bertemu, $kepentingan)
+{
     $query = "UPDATE tamu SET tanggal = ?, nama_tamu = ?, alamat = ?, no_hp = ?, bertemu = ?, kepentingan = ? WHERE id = $id";
 
     $db = getDBConnection();
@@ -38,7 +52,8 @@ function updateTamu($id, $tanggal, $nama_tamu, $alamat, $no_hp, $bertemu, $kepen
     return $stmt->execute();
 }
 
-function deleteTamuById($id) {
+function deleteTamuById($id)
+{
     $query = "DELETE FROM tamu WHERE id = $id";
 
     $db = getDBConnection();
