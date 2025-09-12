@@ -2,10 +2,10 @@
 require_once "./models/Tamu.php";
 
 $action = $_GET['action'] ?? null;
+$status = null;
 
 switch ($action) {
     case 'createTamu':
-        echo "Test";
         $prefix = "zt";
         $kode = getTamuLargestId();
 
@@ -15,7 +15,6 @@ switch ($action) {
         $kode = $prefix . sprintf("%03s", $urutan);
 
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            echo "Test 2";
             $kode = htmlspecialchars($kode);
             $tanggal = date("Y-m-d");
             $nama_tamu = htmlspecialchars($_POST["nama_tamu"]);
@@ -24,7 +23,12 @@ switch ($action) {
             $bertemu = htmlspecialchars($_POST["bertemu"]);
             $kepentingan = htmlspecialchars($_POST["kepentingan"]);
 
-            createTamu($kode, $tanggal, $nama_tamu, $alamat, $no_hp, $bertemu, $kepentingan);
+            try {
+                createTamu($kode, $tanggal, $nama_tamu, $alamat, $no_hp, $bertemu, $kepentingan);
+                $status = "success";
+            } catch (\Throwable $th) {
+                $status = "failed";
+            }
         }
         break;
 }

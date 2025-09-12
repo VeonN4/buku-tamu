@@ -10,6 +10,23 @@ require_once "./models/Tamu.php";
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <h1 class="h3 mb-4 text-gray-800">Tabel Tamu</h1>
+
+    <?php
+    if ($status === "success") {
+    ?>
+        <div class="alert alert-success" role="alert">
+            Data Berhasil disimpan!
+        </div>
+    <?php
+    } elseif ($status === "failed") {
+    ?>
+        <div class="alert alert-danger" role="alert">
+            Data gagal disimpan!
+        </div>
+    <?php
+    }
+    ?>
+
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <button type="button" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#tambahModal">
@@ -42,6 +59,7 @@ require_once "./models/Tamu.php";
                             <th>Alamat</th>
                             <th>No. HP</th>
                             <th>Bertemu</th>
+                            <th>Kepentingan</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -59,8 +77,8 @@ require_once "./models/Tamu.php";
                                 <td><?= htmlspecialchars($value['bertemu']) ?></td>
                                 <td><?= htmlspecialchars($value['kepentingan']) ?></td>
                                 <td>
-                                    <button>S</button>
-                                    <button>S</button>
+                                    <button class="btn btn-success" type="button">Edit</button>
+                                    <button class="btn btn-danger" type="button">Delete</button>
                                 </td>
                             </tr>
                         <?php
@@ -73,12 +91,14 @@ require_once "./models/Tamu.php";
     </div>
 </div>
 
-<div class="modal fade" id="tambahModal" tabindex="-1">
+<div class="modal fade" tabindex="-1" id="tambahModal" aria-labelledby="tambahModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Tambah Tamu</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <form action="buku-tamu.php?action=createTamu" method="post">
@@ -117,7 +137,7 @@ require_once "./models/Tamu.php";
                         <label for="kepentingan" class="col-sm-3 col-form-label"></label>
                         <div class="col-sm-8 flex justify-content-end">
                             <div>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Keluar</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
                                 <button type="submit" class="btn btn-primary" name="simpan">Simpan</button>
                             </div>
                         </div>
