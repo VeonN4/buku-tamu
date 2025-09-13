@@ -30,9 +30,9 @@
             <span>Laporan</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="user.php">
+        <a class="nav-link" href="users.php">
             <i class="fas fa-fw fa-user"></i>
-            <span>User</span></a>
+            <span>Users</span></a>
     </li>
 
     <!-- Sidebar Toggler (Sidebar) -->

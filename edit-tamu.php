@@ -3,7 +3,7 @@ include "views/header.php";
 include "views/sidebar.php";
 include "views/topbar.php";
 
-require_once "./controllers/TamuControllers.php";
+require_once "./controllers/TamuController.php";
 require_once "./models/Tamu.php";
 
 $id_tamu = $_GET['id'];

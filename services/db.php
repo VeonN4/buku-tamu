@@ -1,6 +1,6 @@
 <?php
-
-function getDBConnection() {
+function getDBConnection()
+{
     static $conn = null;
 
     if ($conn === null) {
@@ -18,5 +18,4 @@ function getDBConnection() {
     }
 
     return $conn;
-
 }

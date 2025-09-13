@@ -1,5 +1,5 @@
 <?php
-include "./services/db.php";
+require_once "./services/db.php";
 
 function createTamu($id_tamu, $tanggal, $nama_tamu, $alamat, $no_hp, $bertemu, $kepentingan)
 {

@@ -3,7 +3,7 @@ include "views/header.php";
 include "views/sidebar.php";
 include "views/topbar.php";
 
-require_once "./controllers/TamuControllers.php";
+require_once "./controllers/TamuController.php";
 require_once "./models/Tamu.php";
 ?>
 
@@ -95,14 +95,13 @@ require_once "./models/Tamu.php";
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
+                <h5 class="modal-title">Tambah Tamu</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <form action="buku-tamu.php?action=createTamu" method="post">
-                    <input type="hidden" name="id_tamu" value="<?= $kodeTamu ?>">
                     <div class="form-group row">
                         <label for="nama_tamu" class="col-sm-3 col-form-label">Nama Tamu</label>
                         <div class="col-sm-8">
