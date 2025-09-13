@@ -23,7 +23,7 @@ function getTamu()
 
 function getTamuById($id)
 {
-    $query = "SELECT * FROM tamu WHERE id = $id";
+    $query = "SELECT * FROM tamu WHERE id_tamu = ?";
 
     $db = getDBConnection();
     $stmt = $db->prepare($query);
@@ -44,17 +44,17 @@ function getTamuLargestId()
 
 function updateTamu($id, $tanggal, $nama_tamu, $alamat, $no_hp, $bertemu, $kepentingan)
 {
-    $query = "UPDATE tamu SET tanggal = ?, nama_tamu = ?, alamat = ?, no_hp = ?, bertemu = ?, kepentingan = ? WHERE id = $id";
+    $query = "UPDATE tamu SET tanggal = ?, nama_tamu = ?, alamat = ?, no_hp = ?, bertemu = ?, kepentingan = ? WHERE id_tamu = ?";
 
     $db = getDBConnection();
     $stmt = $db->prepare($query);
-    $stmt->bind_param("ssssss", $tanggal, $nama_tamu, $alamat, $no_hp, $bertemu, $kepentingan);
+    $stmt->bind_param("sssssss", $tanggal, $nama_tamu, $alamat, $no_hp, $bertemu, $kepentingan, $id);
     return $stmt->execute();
 }
 
 function deleteTamuById($id)
 {
-    $query = "DELETE FROM tamu WHERE id = $id";
+    $query = "DELETE FROM tamu WHERE id_tamu = $id";
 
     $db = getDBConnection();
     $stmt = $db->prepare($query);
