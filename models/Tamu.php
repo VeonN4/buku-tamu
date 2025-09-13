@@ -54,7 +54,7 @@ function updateTamu($id, $tanggal, $nama_tamu, $alamat, $no_hp, $bertemu, $kepen
 
 function deleteTamuById($id)
 {
-    $query = "DELETE FROM tamu WHERE id_tamu = $id";
+    $query = "DELETE FROM tamu WHERE id_tamu = ?";
 
     $db = getDBConnection();
     $stmt = $db->prepare($query);
