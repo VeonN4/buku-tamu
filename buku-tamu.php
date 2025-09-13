@@ -77,8 +77,8 @@ require_once "./models/Tamu.php";
                                 <td><?= htmlspecialchars($value['bertemu']) ?></td>
                                 <td><?= htmlspecialchars($value['kepentingan']) ?></td>
                                 <td>
-                                    <button class="btn btn-success" type="button">Edit</button>
-                                    <button class="btn btn-danger" type="button">Delete</button>
+                                    <a class="btn btn-success" href="edit-tamu.php?id=<?= htmlspecialchars($value['id_tamu']) ?>">Edit</a>
+                                    <a class="btn btn-danger" href="buku-tamu.php?action=deleteTamu&id=<?= htmlspecialchars($value['id_tamu']) ?>" onclick="confirm('Apakah kamu ingin menghapus data ini?')">Delete</a>
                                 </td>
                             </tr>
                         <?php
