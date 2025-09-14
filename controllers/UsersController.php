@@ -10,12 +10,10 @@ switch ($action) {
         $prefix = "usr";
         $kode = getUserLargestId()->fetch_assoc()['maxUserId'] === NULL ? ['maxUserId' => "0"] : getUserLargestId()->fetch_assoc();
 
-        $urutan = (int) substr($kode['maxUserId'], 2, 3);
+        $urutan = (int) substr($kode['maxUserId'], 3, 2);
         $urutan++;
 
         $id_user = $prefix . sprintf("%02s", $urutan);
-
-        var_dump($id_user);
 
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $id_user = htmlspecialchars($id_user);
@@ -36,9 +34,8 @@ switch ($action) {
 
     case 'editUser':
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $id_user = htmlspecialchars($id_user);
+            $id_user = htmlspecialchars($_POST['id_user']);
             $username = htmlspecialchars($_POST["username"]);
-            $password = htmlspecialchars($_POST["password"]);
             $role = htmlspecialchars($_POST["user_role"]);
 
             try {
@@ -46,6 +43,24 @@ switch ($action) {
                 $status = "success";
             } catch (\Throwable $th) {
                 $status = "failed";
+            }
+        }
+        break;
+
+    case 'changePassword':
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $id_user = htmlspecialchars($_POST['id_user']);
+            $password = htmlspecialchars($_POST['password']);
+            $password = password_hash($password, PASSWORD_DEFAULT);
+            $data =  getUserById($id_user)->fetch_assoc();
+
+
+            try {
+                updateUser($id_user, $data['username'], $password, $data['user_role']);
+                $status = "success";
+            } catch (\Throwable $th) {
+                $status = "failed";
+                echo $th;
             }
         }
         break;

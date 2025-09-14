@@ -65,8 +65,11 @@ require_once "./models/User.php";
                                 <td><?= htmlspecialchars($value['username']) ?></td>
                                 <td><?= htmlspecialchars($value['user_role']) ?></td>
                                 <td>
-                                    <a class="btn btn-success" href="edit-tamu.php?id=<?= htmlspecialchars($value['id_user']) ?>">Edit</a>
-                                    <a class="btn btn-danger" href="buku-tamu.php?action=deleteTamu&id=<?= htmlspecialchars($value['id_user']) ?>" onclick="confirm('Apakah kamu ingin menghapus data ini?')">Delete</a>
+                                    <button type="button" class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#gantiPassword" data-id="<?= $value['id_user'] ?>">
+                                        <span class="text">Ganti Password</span>
+                                    </button>
+                                    <a class="btn btn-success" href="edit-user.php?id=<?= htmlspecialchars($value['id_user']) ?>">Edit</a>
+                                    <a class="btn btn-danger" href="users.php?action=deleteUser&id=<?= htmlspecialchars($value['id_user']) ?>" onclick="confirm('Apakah kamu ingin menghapus data ini?')">Delete</a>
                                 </td>
                             </tr>
                         <?php
@@ -128,6 +131,40 @@ require_once "./models/User.php";
     </div>
 </div>
 
+<div class="modal fade" tabindex="-1" id="gantiPassword" aria-labelledby="gantiPasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ganti Password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="users.php?action=changePassword" method="post">
+                    <input type="hidden" name="id_user" id="id-user">
+                    <div class="form-group row">
+                        <label for="password" class="col-sm-3 col-form-label">Password</label>
+                        <div class="col-sm-8">
+                            <input type="password" class="form-control" id="password" name="password">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="kepentingan" class="col-sm-3 col-form-label"></label>
+                        <div class="col-sm-8 flex justify-content-end">
+                            <div>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+                                <button type="submit" class="btn btn-primary" name="simpan">Simpan</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
 
 <?php
 include "views/footer.php";
