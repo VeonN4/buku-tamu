@@ -32,6 +32,17 @@ function getUserById($id)
     return $stmt->get_result();
 }
 
+function getUserByUsername($username)
+{
+    $query = "SELECT * FROM users WHERE username = ?";
+
+    $db = getDBConnection();
+    $stmt = $db->prepare($query);
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    return $stmt->get_result();
+}
+
 function getUserLargestId()
 {
     $query = "SELECT max(id_user) as maxUserId FROM users";

@@ -5,6 +5,11 @@ include "views/topbar.php";
 
 require_once "./controllers/UsersController.php";
 require_once "./models/User.php";
+
+if ($_SESSION['role'] != 'admin') {
+    echo "<script>alert('Anda tidak memiliki akses')</script>";
+    echo "<script>window.location.href='index.php'</script>";
+}
 ?>
 
 <!-- Begin Page Content -->

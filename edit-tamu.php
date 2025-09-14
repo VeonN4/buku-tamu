@@ -6,6 +6,11 @@ include "views/topbar.php";
 require_once "./controllers/TamuController.php";
 require_once "./models/Tamu.php";
 
+if ($_SESSION['role'] != 'operator') {
+    echo "<script>alert('Anda tidak memiliki akses')</script>";
+    echo "<script>window.location.href='index.php'</script>";
+}
+
 $id_tamu = $_GET['id'];
 $tamu_data = getTamuById($id_tamu);
 $assoc_tamu_data = $tamu_data->fetch_assoc();
