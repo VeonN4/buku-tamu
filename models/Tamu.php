@@ -21,6 +21,17 @@ function getTamu()
     return $stmt->get_result();
 }
 
+function getTamuBetweenDate($d_awal, $d_akhir)
+{
+    $query = "SELECT * FROM tamu WHERE tanggal BETWEEN ? and ?";
+
+    $db = getDBConnection();
+    $stmt = $db->prepare($query);
+    $stmt->bind_param("ss", $d_awal, $d_akhir);
+    $stmt->execute();
+    return $stmt->get_result();
+}
+
 function getTamuById($id)
 {
     $query = "SELECT * FROM tamu WHERE id_tamu = ?";

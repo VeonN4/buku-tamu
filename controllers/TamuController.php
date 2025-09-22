@@ -7,7 +7,7 @@ $status = null;
 switch ($action) {
     case 'createTamu':
         $prefix = "zt";
-        $kode = getTamuLargestId()->fetch_assoc()['maxUserId'] === NULL ? ['maxUserId' => "000"] : getTamuLargestId()->fetch_assoc();
+        $kode = getTamuLargestId()->fetch_assoc()['maxTamuId'] == NULL ? ['maxTamuId' => "000"] : getTamuLargestId()->fetch_assoc();
 
         $urutan = (int) substr($kode['maxTamuId'], 2, 3);
         $urutan++;
@@ -27,6 +27,7 @@ switch ($action) {
                 createTamu($id_tamu, $tanggal, $nama_tamu, $alamat, $no_hp, $bertemu, $kepentingan);
                 $status = "success";
             } catch (\Throwable $th) {
+                echo $th;
                 $status = "failed";
             }
         }

@@ -4,6 +4,15 @@ include "views/sidebar.php";
 include "views/topbar.php";
 
 require_once "./models/Tamu.php";
+
+$date_data = null;
+
+if (isset($_POST)) {
+    $p_awal = $_POST['p_awal'];
+    $p_akhir = $_POST['p_akhir'];
+
+    $date_data = "date_awal=$p_awal&date_akhir=$p_akhir";
+}
 ?>
 
 <div class="container-fluid">
@@ -54,12 +63,12 @@ require_once "./models/Tamu.php";
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <button type="button" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#tambahModal">
+            <a href="<?= isset($_POST['tampilkan']) ? "?action=export&$date_data" : "/" ?>" class="btn btn-success btn-icon-split">
                 <span class="icon text-white-50">
-                    <i class="fas fa-plus"></i>
+                    <i class="fas fa-file-excel"></i>
                 </span>
-                <span class="text">Data User</span>
-            </button>
+                <span class="text">Export</span>
+            </a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -78,8 +87,10 @@ require_once "./models/Tamu.php";
                     </thead>
                     <tbody>
                         <?php
-                        $dataTamu = getTamu();
-                        foreach ($dataTamu as $key => $value):
+
+                        if (isset($_POST['tampilkan'])):
+                            $dataTamu = getTamuBetweenDate($p_awal, $p_akhir);
+                            foreach ($dataTamu as $key => $value):
                         ?>
                             <tr>
                                 <td><?= htmlspecialchars($value['id_tamu']) ?></td>
@@ -95,7 +106,8 @@ require_once "./models/Tamu.php";
                                 </td>
                             </tr>
                         <?php
-                        endforeach
+                            endforeach;
+                        endif;
                         ?>
                     </tbody>
                 </table>

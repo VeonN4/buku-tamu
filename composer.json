@@ -1,0 +1,17 @@
+{
+    "name": "veon0/buku-tamu",
+    "require": {
+        "phpoffice/phpspreadsheet": "^5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Veon0\\BukuTamu\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "VeonN4",
+            "email": "fxzia13@gmail.com"
+        }
+    ]
+}

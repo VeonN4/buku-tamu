@@ -8,7 +8,7 @@ $status = null;
 switch ($action) {
     case 'createUser':
         $prefix = "usr";
-        $kode = getUserLargestId()->fetch_assoc()['maxUserId'] === NULL ? ['maxUserId' => "0"] : getUserLargestId()->fetch_assoc();
+        $kode = getUserLargestId()->fetch_assoc()['maxUserId'] === NULL ? ['maxUserId' => "0"] : getUserLargestId()->fetch_assoc()['maxUserId'];
 
         $urutan = (int) substr($kode['maxUserId'], 3, 2);
         $urutan++;
