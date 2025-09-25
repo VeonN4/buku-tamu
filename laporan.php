@@ -3,11 +3,13 @@ include "views/header.php";
 include "views/sidebar.php";
 include "views/topbar.php";
 
+include "./controllers/LaporanController.php";
+
 require_once "./models/Tamu.php";
 
 $date_data = null;
 
-if (isset($_POST)) {
+if (isset($_POST['tampilkan'])) {
     $p_awal = $_POST['p_awal'];
     $p_akhir = $_POST['p_akhir'];
 
